@@ -50,7 +50,7 @@ run().catch(console.log);
 
 
 app.get('/', (req, res) => {
-    res.send('Assignment server is Running')
+    res.send('Assignment server is Running...')
 })
 
 app.listen(port, ()=> {
