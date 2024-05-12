@@ -50,11 +50,11 @@ async function run() {
       res.send(result)
     })
 
-    // app.get('/create/:id', async(req, res) => {
-    //   console.log(req.params.id)
-    //   const result = await createCollection.findOne({_id: new ObjectId (req.params.id)})
-    //   res.send(result)
-    // })
+    app.get('/create/:id', async(req, res) => {
+      console.log(req.params.id)
+      const result = await createCollection.findOne({_id: new ObjectId (req.params.id)})
+      res.send(result)
+    })
 
 
     app.post('/create', async(req, res) => {
