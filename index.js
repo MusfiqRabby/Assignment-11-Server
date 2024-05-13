@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
 const app = express();
@@ -34,6 +36,34 @@ async function run() {
   try {
     
     const createCollection = client.db('createDB').collection('create');
+
+    // jwt generate
+    app.post('/jwt', async(req, res)=> {
+      const user = req.body;
+      console.log('dynamic token for this user--->', user);
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET,{
+        expiresIn: '7d'
+      })
+      res
+      .cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production'? 'none': 'strict',
+      })
+      .send({success:true})
+    })
+
+    //clear token on logOut
+    app.get('/logout', (req, res) =>{
+      res
+      .clearCookie('token',  {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production'? 'none': 'strict',
+        maxAge: 0,
+      })
+      .send({success:true})
+    })
 
 
     app.get('/create', async(req, res) => {
