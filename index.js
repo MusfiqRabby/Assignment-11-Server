@@ -12,7 +12,7 @@ const corsOptions = {
     origin: [
       // 'http://localhost:5173',
       // 'http://localhost:5174',
-      'https://assigment-elevent.web.app/',
+      'https://assigment-elevent.web.app',
       'https://assigment-elevent.firebaseapp.com'
     ],
     credentials: true,
