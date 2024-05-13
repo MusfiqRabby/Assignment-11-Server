@@ -10,8 +10,10 @@ const port = process.env.PORT || 5000
 
 const corsOptions = {
     origin: [
-      'http://localhost:5173',
-      'http://localhost:5174',
+      // 'http://localhost:5173',
+      // 'http://localhost:5174',
+      'https://assigment-elevent.web.app/',
+      'https://assigment-elevent.firebaseapp.com'
     ],
     credentials: true,
     optionSuccessStatus: 200,
@@ -143,3 +145,4 @@ app.listen(port, ()=> {
 
 
 
+//https://assigment-elevent.web.app
